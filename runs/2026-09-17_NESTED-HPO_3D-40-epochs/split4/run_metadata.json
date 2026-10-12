@@ -1,0 +1,10 @@
+{
+  "max_epochs": 125,
+  "random_state": 42,
+  "gpus": [
+    0
+  ],
+  "checkpoint_epoch": 16,
+  "checkpoint_global_step": 1139,
+  "precision": 32
+}

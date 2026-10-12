@@ -1,0 +1,56 @@
+{
+  "data": {
+    "batch_size": 64,
+    "dataset": {
+      "transforms": {
+        "p_augs": 0,
+        "rot_angles": [
+          -0.0,
+          0.0
+        ],
+        "random_state": 42,
+        "normalize": true
+      }
+    }
+  },
+  "model": {
+    "model": {
+      "backbone": "timm/resnet34.tv_in1k",
+      "drop_path_rate": 0.03759350468007786
+    },
+    "optimizer": {
+      "type": "AdamW",
+      "lr": 3e-06,
+      "weight_decay": 0.0027586774804278366
+    },
+    "scheduler": {
+      "type": "reduce_on_plateau",
+      "scheduler_params": {
+        "mode": "max",
+        "factor": 0.5,
+        "patience": 12,
+        "verbose": true
+      }
+    }
+  },
+  "callbacks": [
+    {
+      "type": "model_checkpoint",
+      "monitor": "val/f1__macro",
+      "mode": "max",
+      "verbose": true,
+      "save_last": false
+    },
+    {
+      "type": "early_stop",
+      "monitor": "val/f1__macro",
+      "mode": "max",
+      "verbose": true,
+      "patience": 25
+    },
+    {
+      "type": "lr_monitor",
+      "logging_interval": "epoch"
+    }
+  ]
+}

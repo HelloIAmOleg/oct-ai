@@ -1,0 +1,22 @@
+{
+  "axis": "fast_axis",
+  "profile_aggregation": "median",
+  "dim_red": {
+    "type": "NMF",
+    "n_components": 6,
+    "max_iter": 2000,
+    "random_state": 42
+  },
+  "scaler": {
+    "type": "RobustScaler",
+    "after_dim_red": true
+  },
+  "estimator": {
+    "type": "LogisticRegression",
+    "solver": "saga",
+    "random_state": 42,
+    "penalty": "l2",
+    "C": 0.00102454260431629,
+    "max_iter": 2469
+  }
+}

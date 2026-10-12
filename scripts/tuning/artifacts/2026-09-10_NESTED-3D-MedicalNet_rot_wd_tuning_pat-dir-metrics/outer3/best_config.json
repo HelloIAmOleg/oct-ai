@@ -1,0 +1,58 @@
+{
+  "data": {
+    "batch_size": 2,
+    "dataset_type": "3D",
+    "dataset": {
+      "transforms": {
+        "p_augs": 0,
+        "rot_angles": [
+          -0.0,
+          0.0
+        ],
+        "random_state": 42,
+        "normalize": true
+      }
+    }
+  },
+  "model": {
+    "model": {
+      "backbone": "medicalnet_34_23dataset",
+      "model_type": "3D"
+    },
+    "optimizer": {
+      "type": "AdamW",
+      "lr": 3e-06,
+      "weight_decay": 0.00020377845458591833
+    },
+    "scheduler": {
+      "type": "reduce_on_plateau",
+      "scheduler_params": {
+        "mode": "max",
+        "factor": 0.5,
+        "patience": 13,
+        "verbose": true
+      }
+    }
+  },
+  "callbacks": [
+    {
+      "type": "model_checkpoint",
+      "monitor": "val/f1__macro",
+      "mode": "max",
+      "verbose": true,
+      "save_last": false
+    },
+    {
+      "type": "early_stop",
+      "monitor": "val/f1__macro",
+      "mode": "max",
+      "verbose": true,
+      "patience": 25,
+      "stopping_threshold": 0.99
+    },
+    {
+      "type": "lr_monitor",
+      "logging_interval": "epoch"
+    }
+  ]
+}

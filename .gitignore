@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.DS_Store
+.venv/
+*.egg-info/
+predictions/
+images/
+private_data/
+runs/reproduction_*/
+scripts/tuning/artifacts/reproduction_*/
+*.log
